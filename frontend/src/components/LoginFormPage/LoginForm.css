@@ -1,0 +1,56 @@
+.page-container {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-areas:
+        '. form .'
+}
+
+@media (max-width: 768px){
+    .page-container {
+        display:grid;
+        grid-template-rows: auto;
+        grid-template-columns: auto;
+        grid-template-areas:
+            'form'
+    }
+}
+
+.login-form{
+    grid-area: form;
+}
+
+.header {
+    text-align: center;
+}
+
+.label {
+    display:flex;
+    flex-direction:column;
+    padding: 10px;
+}
+
+.button-container{
+    display:flex;
+    justify-content:space-around;
+}
+
+.button{
+    border: none;
+    background-color: transparent;
+}
+
+.icon {
+    height: 40px;
+    width: 40px;
+}
+
+.icon:hover {
+    cursor: pointer;
+    box-shadow: 4px 4px 4px rgba(60, 60, 60, 0.65);
+    transform: scale(1.25);
+    border-radius: 50%;
+    transition-property: transform;
+    transition-duration: .3s;
+    transition-delay: 0s;
+}
