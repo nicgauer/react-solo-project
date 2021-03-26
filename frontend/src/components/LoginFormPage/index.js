@@ -61,13 +61,13 @@ const LoginFormPage = () => {
                 <label className='login__label'>
                     Username or Email
                     <input type="text" value={credential} onChange={credentialHandler} className='login__username login__input' />
-                    {credentialError ? <p className='error-text'>{credentialError}</p> : null}
+                    {credentialError ? <p className='login__error-text'>{credentialError}</p> : null}
                 </label>
                 
                 <label className='login__label'>
                     Password
                     <input type="password" value={password} onChange={passwordHandler} className='login__password login__input' />
-                    {passwordError ? <p className='error-text'>{passwordError}</p> : null}
+                    {passwordError ? <p className='login__error-text'>{passwordError}</p> : null}
                 </label>
                 <div className='login__button-container'>
                     <button type="submit" className="login__submit login__button">
