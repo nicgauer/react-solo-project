@@ -45,7 +45,6 @@ const LoginForm = () => {
 
     const cancelHandler = () => {
         //TO DO -- redirect home 
-        console.log('TO DO -- redirect home');
     }
 
     return (
