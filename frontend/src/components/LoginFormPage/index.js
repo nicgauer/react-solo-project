@@ -13,6 +13,15 @@ const LoginFormPage = () => {
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
+    const [credentialError, setCredentialError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
+    
+    const validation = () => {
+        setCredentialError('');
+        setPasswordError('');
+        if(credential.length < 1) setCredentialError('Please enter your email or username')
+        if(password.length < 6) setPasswordError('Passwords must be at least 6 characters')
+    }
 
     if(sessionUser) return (
         <Redirect to='/' />
@@ -28,6 +37,7 @@ const LoginFormPage = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        validation();
         setErrors([])
         return dispatch(sessionActions.login({ credential, password }))
             .catch(async (res) => {
@@ -42,27 +52,29 @@ const LoginFormPage = () => {
     }
 
     return (
-        <div className='page-container'>
-            <form className='login-form' onSubmit={submitHandler}>
-                <h2 className='header'>Log In</h2>
+        <div className='login__page-container'>
+            <form className='login__form' onSubmit={submitHandler}>
+                <h2 className='login__header'>Log In</h2>
                 <ul>
                     {errors.map((error) => <li key={error}>{error}</li>)}
                 </ul>
-                <label className='label'>
+                <label className='login__label'>
                     Username or Email
-                    <input type="text" value={credential} onChange={credentialHandler} className='username-input' />
+                    <input type="text" value={credential} onChange={credentialHandler} className='login__username login__input' />
+                    {credentialError ? <p className='error-text'>{credentialError}</p> : null}
                 </label>
                 
-                <label className='label'>
+                <label className='login__label'>
                     Password
-                    <input type="password" value={password} onChange={passwordHandler} className='password-input' />
+                    <input type="password" value={password} onChange={passwordHandler} className='login__password login__input' />
+                    {passwordError ? <p className='error-text'>{passwordError}</p> : null}
                 </label>
-                <div className='button-container'>
-                    <button type="submit" className="submit button">
-                        <img src={confirmIcon} className='icon' title='log in' />
+                <div className='login__button-container'>
+                    <button type="submit" className="login__submit login__button">
+                        <img src={confirmIcon} className='login__icon' title='log in' />
                     </button>
-                    <button type="button" className="cancel button" onClick={cancelHandler}>
-                        <img src={cancelIcon} className='icon' title='Cancel' />
+                    <button type="button" className="login__cancel login__button" onClick={cancelHandler}>
+                        <img src={cancelIcon} className='login__icon' title='Cancel' />
                     </button>
                 </div>
             </form>
