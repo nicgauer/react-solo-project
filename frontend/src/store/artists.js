@@ -1,17 +1,18 @@
 import { csrfFetch } from './csrf';
 
-const NEW_ARTIST = 'new-artist';
+// const NEW_ARTIST = 'new-artist';
 
-//Action creators
-const newArtist = (artist) => {
-    return { 
-        type: NEW_ARTIST,
-        payload: artist,
-    }
-}
+// //Action creators
+// const newArtist = (artist) => {
+//     return { 
+//         type: NEW_ARTIST,
+//         payload: artist,
+//     }
+// }
 
 //Create artist thunk
 export const newArtist = (artist) => async dispatch => {
+    console.log('New Artist Thunk Activated!')
     const { image, name, customURL, bio, location, userId } = artist;
     const formData = new FormData();
     formData.append('name', name);
@@ -31,7 +32,7 @@ export const newArtist = (artist) => async dispatch => {
     })
 
     const data = await response.json();
-    dispatch(newArtist(data.artist))
+    // dispatch(newArtist(data.artist))
     return response;
 }
 
@@ -39,4 +40,9 @@ export const getArtist = (url) => async dispatch => {
     const artist = await csrfFetch(`/api/${url}`);
     const response = await artist.json();
     return response
+}
+
+export const getAllArtists = () => async dispatch => {
+    const artists = await csrfFetch(`/api/artists`);
+    return artists
 }

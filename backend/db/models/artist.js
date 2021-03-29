@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     customURL: {
       allowNull: false,
       type:DataTypes.STRING,
+      unique:true,
     },
     pictureURL: {
       type:DataTypes.STRING,

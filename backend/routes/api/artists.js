@@ -6,6 +6,7 @@ const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { Artist } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3.js');
 
 const validateNewArtist = [
     check('name')
@@ -20,7 +21,11 @@ const validateNewArtist = [
 router.post('/new-artist', singleMulterUpload("image"), validateNewArtist, asyncHandler(async (req, res) => {
     const { name, customURL, bio, location, userId } = req.body;
     
-    const pictureURL = await singlePublicFileUpload(req.file);
+    const pictureURL = null;
+
+    if(req.file){
+        const pictureURL = await singlePublicFileUpload(req.file);
+    }
 
     const artist = await Artist.create({ 
         name, 
@@ -82,6 +87,11 @@ router.put('/:artistUrl/edit', validateNewArtist, asyncHandler( async (req, res)
     if(req.user.userId === artist.userId){
         //TO DO -- finish
     }
+}))
+
+router.get('/artists', asyncHandler( async (req, res) => {
+    const artistNames = await Artist.findAll()
+    return artists;
 }))
 
 
