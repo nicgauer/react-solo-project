@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux'
 
-import './LoginForm.css';
+import styles from './LoginForm.module.css';
 import confirmIcon from '../icons/icons8-checked-26.png';
 import cancelIcon from '../icons/icons8-delete-26.png';
 
@@ -48,29 +48,29 @@ const LoginForm = () => {
     }
 
     return (
-        <div className='login__page-container'>
-            <form className='login__form' onSubmit={submitHandler}>
-                <h2 className='login__header'>Log In</h2>
+        <div className={styles.container}>
+            <form className={styles.form} onSubmit={submitHandler}>
+                <h2 className={styles.header}>Log In</h2>
                 <ul>
                     {errors.map((error) => <li key={error}>{error}</li>)}
                 </ul>
-                <label className='login__label'>
+                <label className={styles.label}>
                     Username or Email
                     <input type="text" value={credential} onChange={credentialHandler} className='login__username login__input' />
-                    {credentialError ? <p className='login__error-text'>{credentialError}</p> : null}
+                    {credentialError ? <p className={styles.errorText}>{credentialError}</p> : null}
                 </label>
                 
-                <label className='login__label'>
+                <label className={styles.label}>
                     Password
                     <input type="password" value={password} onChange={passwordHandler} className='login__password login__input' />
-                    {passwordError ? <p className='login__error-text'>{passwordError}</p> : null}
+                    {passwordError ? <p className={styles.errorText}>{passwordError}</p> : null}
                 </label>
-                <div className='login__button-container'>
-                    <button type="submit" className="login__submit login__button">
-                        <img src={confirmIcon} className='login__icon' title='log in' alt='login' />
+                <div className={styles.buttonContainer}>
+                    <button type="submit" className={styles.button}>
+                        <img src={confirmIcon} className={styles.icon} title='log in' alt='login' />
                     </button>
-                    <button type="button" className="login__cancel login__button" onClick={cancelHandler}>
-                        <img src={cancelIcon} className='login__icon' title='Cancel' alt='cancel' />
+                    <button type="button" className={styles.button} onClick={cancelHandler}>
+                        <img src={cancelIcon} className={styles.icon} title='Cancel' alt='cancel' />
                     </button>
                 </div>
             </form>

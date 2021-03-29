@@ -32,7 +32,7 @@ export const createUser = (user) => async (dispatch) => {
 
     if(image) formData.append("image", image);
 
-    const res = await csrfFetch(`/api/users`, {
+    const response = await csrfFetch(`/api/users`, {
         method: "POST",
         headers: {
             "Content-Type": "multipart/form-data",
@@ -40,8 +40,9 @@ export const createUser = (user) => async (dispatch) => {
         body: formData,
     });
 
-    const data = await res.json();
+    const data = await response.json();
     dispatch(setUser(data.user));
+    return response;
 }
 
 //Login thunk
