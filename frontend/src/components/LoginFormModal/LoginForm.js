@@ -67,10 +67,10 @@ const LoginForm = () => {
                 </label>
                 <div className='login__button-container'>
                     <button type="submit" className="login__submit login__button">
-                        <img src={confirmIcon} className='login__icon' title='log in' />
+                        <img src={confirmIcon} className='login__icon' title='log in' alt='login' />
                     </button>
                     <button type="button" className="login__cancel login__button" onClick={cancelHandler}>
-                        <img src={cancelIcon} className='login__icon' title='Cancel' />
+                        <img src={cancelIcon} className='login__icon' title='Cancel' alt='cancel' />
                     </button>
                 </div>
             </form>

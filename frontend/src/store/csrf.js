@@ -7,9 +7,13 @@ export async function csrfFetch(url, options={}){
 
     //Setting the XSRF token
     if(options.method.toUpperCase() !== 'GET'){
-        options.headers['Content-Type'] = 
+        if (options.headers["Content-Type"] === "multipart/form-data"){
+            delete options.headers["Content-Type"];
+        } else {
+            options.headers['Content-Type'] = 
             options.headers['Content-Type'] || 'application/json';
-        options.headers['XSRF-Token'] = Cookies.get('XSRF-TOKEN');
+        }
+            options.headers['XSRF-Token'] = Cookies.get('XSRF-TOKEN');
     }
 
     //calls default window's fetch with options

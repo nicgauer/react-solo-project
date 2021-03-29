@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
         len: [60, 60]
       }
     },
+    pictureURL: {
+      type: DataTypes.STRING(255),
+    }
   },
   {
     defaultScope: {
@@ -51,8 +54,8 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.prototype.toSafeObject = function() {
-    const { id, username, email } = this;
-    return { id, username, email }
+    const { id, username, email, pictureURL } = this;
+    return { id, username, email, pictureURL }
   }
   
   User.prototype.validatePassword = function(password) {
@@ -78,10 +81,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
-  User.signup = async function({ username, email, password}) {
+  User.signup = async function({ username, email, password, pictureURL}) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({ 
-      username, email, hashedPassword
+      username, email, hashedPassword, pictureURL
     })
     return await User.scope('currentUser').findByPk(user.id);
   }
