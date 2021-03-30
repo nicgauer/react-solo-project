@@ -36,10 +36,14 @@ export const newArtist = (artist) => async dispatch => {
     return response;
 }
 
-export const getArtist = (url) => async dispatch => {
-    const artist = await csrfFetch(`/api/${url}`);
-    const response = await artist.json();
-    return response
+export const getArtist = async (url) => {
+    try{
+        const artist = await csrfFetch(`/api/${url}`);
+        const response = await artist.json();
+        return response
+    } catch (e) {
+        return null;
+    }
 }
 
 export const getAllArtists = () => async dispatch => {

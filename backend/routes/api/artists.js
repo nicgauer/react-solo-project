@@ -53,7 +53,7 @@ router.post('/new-artist', singleMulterUpload("image"), validateNewArtist, async
 
 //Get artist info
 router.get('/:artistUrl', asyncHandler( async (req, res, next) => {
-    const artistUrl = req.params.artistId;
+    const artistUrl = req.params.artistUrl;
 
     const artist = await Artist.findOne({
         where: { 

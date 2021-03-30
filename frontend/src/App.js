@@ -7,6 +7,8 @@ import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 import HomePage from './components/HomePage';
 import NewArtistPage from './components/NewArtist';
+import ArtistPage from './components/ArtistPage';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -29,8 +31,12 @@ function App() {
               <SignUpFormPage />
             </Route>
 
-            <Route path='' exact>
+            <Route path='/' exact>
               <HomePage />
+            </Route>
+            
+            <Route path='/:url'>
+                <ArtistPage />
             </Route>
         </Switch>
       )}
