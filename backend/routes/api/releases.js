@@ -21,27 +21,26 @@ const validateNewRelease = [
 ]
 
 router.post('/new-release', 
-validateNewRelease,
-singleMulterUpload("image"), 
+singleMulterUpload("image"),
 requireAuth,
+validateNewRelease, 
 asyncHandler(async (req, res, next) => {
     const { artistId, name, releaseDate, bio, credits } = req.body;
-
-    const artist = await Artist.findByPk(artistId);
+    // const artist = await Artist.findByPk(artistId);
     
-    if(checkIfCurrentUser(artist.userId)){
-        const coverURL = await singlePublicFileUpload(req.file);
-
-        const release = await Release.newRelease({
+    // if(checkIfCurrentUser(artist.userId, req)){
+        coverURL = await singlePublicFileUpload(req.file);
+        
+        const release = await Release.create({
             artistId, coverURL, name, releaseDate, bio, credits
         })
 
         return res.json({
             release
         })
-    }else{
-        throw new Error('Unauthorized') 
-    }
+    // }else{
+    //     throw new Error('Unauthorized') 
+    // }
     
 }))
 

@@ -8,8 +8,8 @@ const releaseRouter = require('./releases');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
-router.use(artistRouter)
 router.use(releaseRouter);
+router.use(artistRouter)
 
 module.exports = router;
 

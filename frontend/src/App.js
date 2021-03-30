@@ -8,6 +8,7 @@ import Navigation from './components/Navigation';
 import HomePage from './components/HomePage';
 import NewArtistPage from './components/NewArtist';
 import ArtistPage from './components/ArtistPage';
+import CreateNewRelease from './components/CreateNewRelease';
 
 
 function App() {
@@ -31,9 +32,14 @@ function App() {
               <SignUpFormPage />
             </Route>
 
+            <Route path='/new-release'>
+              <CreateNewRelease />
+            </Route>
+
             <Route path='/' exact>
               <HomePage />
             </Route>
+
             
             <Route path='/:url'>
                 <ArtistPage />

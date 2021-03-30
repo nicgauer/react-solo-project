@@ -45,15 +45,15 @@ export const getArtist = async (url) => {
     }
 }
 
-export const getAllArtists = () => async dispatch => {
+export const getAllArtists = async () => {
     const artists = await csrfFetch(`/api/artists`);
-    return artists
+    const response = await artists.json();
+    return response.artists;
 }
 
 export const getOwnedArtists = async (userId) => {
     try {
         const artists = await csrfFetch(`/api/artists/${userId}`);
-        console.log(artists);
         const response = await artists.json();
         return response;
     } catch (e) {

@@ -22,7 +22,9 @@ const validateNewArtist = [
 router.get('/artists', asyncHandler( async (req, res) => {
     const artists = await Artist.findAll()
 
-    return res.json({artists});
+    return res.json({
+        artists
+    });
 }))
 
 //Returns all artists owned by passed in user
@@ -39,15 +41,15 @@ router.get('/artists/:userId', asyncHandler( async (req, res) => {
 }))
 
 
-router.post('/new-artist', requireAuth, singleMulterUpload("image"), validateNewArtist, asyncHandler(async (req, res) => {
+router.post('/new-artist', singleMulterUpload("image"), requireAuth, validateNewArtist, asyncHandler(async (req, res) => {
     const { name, customURL, bio, location, userId } = req.body;
-    
-    const pictureURL = null;
 
-    if(checkIfCurrentUser(userId)){
-        if(req.file){
-            pictureURL = await singlePublicFileUpload(req.file);
-        }
+    // console.log(req);
+
+    // if(checkIfCurrentUser(userId, req)){
+        // if(req.file){
+           const pictureURL = await singlePublicFileUpload(req.file);
+        // }
         
         const artist = await Artist.create({ 
             name, 
@@ -69,10 +71,10 @@ router.post('/new-artist', requireAuth, singleMulterUpload("image"), validateNew
         return res.json({
             artist,
         })
-    }else{
-        const err = new Error('Unauthorized');
-        return next(err);
-    }
+    // }else{
+    //     const err = new Error('Unauthorized');
+    //     return next(err);
+    // }
 }))
 
 

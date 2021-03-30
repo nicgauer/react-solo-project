@@ -1,14 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import * as artistActions from '../../store/artists'
 import { Redirect, useHistory } from 'react-router-dom';
+
+const reservedURLs = [
+    'new-artist',
+    'new-release',
+    'login',
+    'signup',
+]
 
 const NewArtistForm = () => {
     const [name, setName] = useState('');
     const [customURL, setCustomURL] = useState('');
     const [bio, setBio] = useState('');
     const [location, setLocation] = useState('');
-    const [errors, setErrors] = useState('');
+    const [errors, setErrors] = useState([]);
 
     const [image, setImage] = useState(null);
 
@@ -20,14 +27,16 @@ const NewArtistForm = () => {
         <Redirect to='/' />
     )
 
-    const validation = () => {
-        const errors = [];
-        // const artists = dispatch(artistActions.getAllArtists)
-        // const artistUrls = artists.map(artist => artist.url);
+    const validation = async () => {
+        const validationErrors = [];
+        const artists = await artistActions.getAllArtists()
+        let artistUrls = artists.map(artist => artist.customURL);
+        artistUrls = [...artistUrls, ...reservedURLs]
 
-        if(name.length < 1) errors.push('Please provide a name.')
-        // if(artistUrls.includes(customURL)) errors.push('URL is taken!')
-        return errors;
+        if(name.length < 1) validationErrors.push('Please provide a name.')
+        if(artistUrls.includes(customURL)) validationErrors.push('URL is taken!')
+
+        setErrors(validationErrors);
     }
 
     const nameHandler = (e) => {
@@ -51,12 +60,9 @@ const NewArtistForm = () => {
         if(file) setImage(file);
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-        const validationErrors = validation();
-        // if(validationErrors){
-        //     setErrors(validationErrors);
-        // }else{
+        await validation();
             return dispatch(artistActions.newArtist({ 
                 image, name, customURL, bio, location, userId: sessionUser.id
             }))
@@ -64,12 +70,12 @@ const NewArtistForm = () => {
             .catch(async (res) => {
                 const data = await res.json();
                 if(data && data.errors) setErrors(data.errors);
-            })
-        // }        
+            })       
     }
 
     return (
         <form onSubmit={submitHandler}>
+            {errors.map(error => <p key={error}>{error.message}</p>)}
             <label>
                 Artist Name
                 <input

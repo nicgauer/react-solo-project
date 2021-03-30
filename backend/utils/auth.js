@@ -58,7 +58,7 @@ const requireAuth = [
     }
 ];
 
-const checkIfCurrentUser = (userId) => {
+const checkIfCurrentUser = (userId, req) => {
     const { token } = req.cookies
    return jwt.verify(token, secret, null, async (err, jwtPayload) => {
       if (err) {
