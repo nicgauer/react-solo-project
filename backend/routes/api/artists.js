@@ -3,7 +3,7 @@ const router = express.Router();
 
 const asyncHandler = require('express-async-handler');
 const { requireAuth, checkIfCurrentUser } = require('../../utils/auth');
-const { Artist } = require('../../db/models');
+const { Artist, Release } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3.js');
@@ -86,7 +86,8 @@ router.get('/:artistUrl', asyncHandler( async (req, res, next) => {
     const artist = await Artist.findOne({
         where: { 
             customURL: artistUrl,
-        }
+        },
+        include: Release
     })
 
     if(!artist) {

@@ -62,6 +62,12 @@ const ProfileButton = ({ user }) => {
                     </li>
 
                     <li>
+                        <NavLink to='/new-release'>
+                            <button>Create New Release</button>
+                        </NavLink>
+                    </li>
+
+                    <li>
                         <button onClick={logout} className='profile-dropdown__logout-button'>Log out</button>
                     </li>
 

@@ -1,0 +1,31 @@
+.container {
+    cursor: pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 15px;
+    background-color: rgba(215, 215, 215, .6);
+    height:160px;
+    width: 120px
+}
+
+.container:hover {
+    background-color: rgba(185, 185, 185, .8);
+    box-shadow: 3px 3px 5px rgba(185, 185, 185, .8);
+    text-decoration: underline;
+}
+
+.artistImg {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.artistName {
+    font-size:20px;
+    text-shadow: 2px 2px 2px rgba(215, 219, 219, .65);
+}
