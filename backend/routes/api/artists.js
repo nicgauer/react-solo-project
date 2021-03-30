@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const asyncHandler = require('express-async-handler');
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { requireAuth, checkIfCurrentUser } = require('../../utils/auth');
 const { Artist } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -39,35 +39,40 @@ router.get('/artists/:userId', asyncHandler( async (req, res) => {
 }))
 
 
-router.post('/new-artist', singleMulterUpload("image"), validateNewArtist, asyncHandler(async (req, res) => {
+router.post('/new-artist', requireAuth, singleMulterUpload("image"), validateNewArtist, asyncHandler(async (req, res) => {
     const { name, customURL, bio, location, userId } = req.body;
     
     const pictureURL = null;
 
-    if(req.file){
-        const pictureURL = await singlePublicFileUpload(req.file);
-    }
-
-    const artist = await Artist.create({ 
-        name, 
-        customURL, 
-        pictureURL,
-        bio,
-        location,
-        userId,
-    })
-
-    if(!artist){
-        const err = new Error('Artist creation failed!');
-        err.status = 404;
-        err.title = 'Artist creation failed!';
-        err.errors = ['Artist creation failed!'];
+    if(checkIfCurrentUser(userId)){
+        if(req.file){
+            pictureURL = await singlePublicFileUpload(req.file);
+        }
+        
+        const artist = await Artist.create({ 
+            name, 
+            customURL, 
+            pictureURL,
+            bio,
+            location,
+            userId,
+        })
+        
+        if(!artist){
+            const err = new Error('Artist creation failed!');
+            err.status = 404;
+            err.title = 'Artist creation failed!';
+            err.errors = ['Artist creation failed!'];
+            return next(err);
+        }
+        
+        return res.json({
+            artist,
+        })
+    }else{
+        const err = new Error('Unauthorized');
         return next(err);
     }
-
-    return res.json({
-        artist,
-    })
 }))
 
 

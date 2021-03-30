@@ -1,4 +1,6 @@
 'use strict';
+const { Release } = require('./index');
+
 module.exports = (sequelize, DataTypes) => {
   const Artist = sequelize.define('Artist', {
     name: {
@@ -25,8 +27,17 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Artist.associate = function(models) {
     Artist.belongsTo(models.User, { foreignKey: 'userId' })
+    Artist.hasMany(models.Release, { foreignKey: 'artistId' })
   };
 
+  Artist.getAssociatedReleases = () => {
+    const releases = Release.findAll({
+      where: { 
+        artistId
+      },
+    })
+    return releases;
+  }
 
   return Artist;
 };

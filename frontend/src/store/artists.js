@@ -12,7 +12,6 @@ import { csrfFetch } from './csrf';
 
 //Create artist thunk
 export const newArtist = (artist) => async dispatch => {
-    console.log('New Artist Thunk Activated!')
     const { image, name, customURL, bio, location, userId } = artist;
     const formData = new FormData();
     formData.append('name', name);

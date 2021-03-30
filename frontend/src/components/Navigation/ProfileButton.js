@@ -56,6 +56,12 @@ const ProfileButton = ({ user }) => {
                         <NavLink to={`/${artist.customURL}`}>{artist.name}</NavLink>
                     </li>)}
                     <li>
+                        <NavLink to='/new-artist'>
+                            <button>Create New Artist</button>
+                        </NavLink>
+                    </li>
+
+                    <li>
                         <button onClick={logout} className='profile-dropdown__logout-button'>Log out</button>
                     </li>
 
