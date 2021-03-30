@@ -50,3 +50,14 @@ export const getAllArtists = () => async dispatch => {
     const artists = await csrfFetch(`/api/artists`);
     return artists
 }
+
+export const getOwnedArtists = async (userId) => {
+    try {
+        const artists = await csrfFetch(`/api/artists/${userId}`);
+        console.log(artists);
+        const response = await artists.json();
+        return response;
+    } catch (e) {
+        return null;
+    }
+}

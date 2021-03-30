@@ -18,6 +18,27 @@ const validateNewArtist = [
 ]
 
 
+//Returns all artists
+router.get('/artists', asyncHandler( async (req, res) => {
+    const artists = await Artist.findAll()
+
+    return res.json({artists});
+}))
+
+//Returns all artists owned by passed in user
+router.get('/artists/:userId', asyncHandler( async (req, res) => {
+    const userId = req.params.userId;
+    const artists = await Artist.findAll({ 
+        where: { 
+            userId
+        }
+    })
+    return res.json({
+        artists,
+    })
+}))
+
+
 router.post('/new-artist', singleMulterUpload("image"), validateNewArtist, asyncHandler(async (req, res) => {
     const { name, customURL, bio, location, userId } = req.body;
     
@@ -87,11 +108,6 @@ router.put('/:artistUrl/edit', validateNewArtist, asyncHandler( async (req, res)
     if(req.user.userId === artist.userId){
         //TO DO -- finish
     }
-}))
-
-router.get('/artists', asyncHandler( async (req, res) => {
-    const artistNames = await Artist.findAll()
-    return artists;
 }))
 
 
