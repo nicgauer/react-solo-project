@@ -7,7 +7,7 @@ const ArtistDisplay = ({ artist }) => {
             <img src={artist.pictureURL} />
             <div style={{display: 'flex'}}>
             {artist.Releases.map((release) => 
-                <ReleaseBox release={release} />)}
+                <ReleaseBox key={release.id} release={release} artist={artist} />)}
             </div>
         </div>
     )

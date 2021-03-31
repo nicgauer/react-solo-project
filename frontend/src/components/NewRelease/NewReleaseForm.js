@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as artistActions from '../../store/artists';
 import * as releaseActions from '../../store/releases';
 import { Redirect, useHistory } from 'react-router-dom';
+import SongUploadPage from './SongUploadPage';
+import PageNotFound from '../PageNotFound';
 
 const NewReleaseForm = () => {
     const [name, setName] = useState('');
@@ -14,6 +16,11 @@ const NewReleaseForm = () => {
     const [errors, setErrors] = useState([]);
 
     const [image, setImage] = useState(null);
+
+    const [release, setRelease] = useState(null);
+    const [uploadPage, setUploadPage] = useState(false);
+
+
 
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
@@ -28,6 +35,13 @@ const NewReleaseForm = () => {
         })();
     }, [])
 
+    useEffect(() => {
+        if(release){
+            setUploadPage(true)
+        }
+    }, [release]);
+
+
     const updateFile = (e) => {
         const file = e.target.files[0];
         if(file) setImage(file);
@@ -36,18 +50,23 @@ const NewReleaseForm = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         
-        await releaseActions.newRelease({
+        const newRelease = await releaseActions.newRelease({
             image, artistId, name, releaseDate, about, credits
         })
-        .then(history.push('/'))
         .catch(async (res) => {
             const data = await res.json();
             if(data && data.errors) setErrors(data.errors);
         })
+
+        if(newRelease) {
+            const json = await newRelease.json();
+            setRelease(json);
+        }
     }
 
-    return (
-        <form onSubmit={submitHandler}>
+    if(uploadPage === false){   
+        return (
+            <form onSubmit={submitHandler}>
             <h2>Create New Release</h2>
             <label>
                 Select artist
@@ -87,6 +106,14 @@ const NewReleaseForm = () => {
             <button type='submit'>Submit!!</button>
         </form>
     )
+    }else {
+        return (
+            <>
+                {release && <SongUploadPage release={release.release} />}
+                {!release && <PageNotFound />}
+            </>
+        )
+    }
 }
 
 export default NewReleaseForm;

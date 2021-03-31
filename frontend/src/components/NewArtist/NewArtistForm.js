@@ -8,6 +8,8 @@ const reservedURLs = [
     'new-release',
     'login',
     'signup',
+    'new-song', 
+    'api'
 ]
 
 const NewArtistForm = () => {

@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Release.associate = function(models) {
     Release.belongsTo(models.Artist, { foreignKey: 'artistId'})
+    Release.hasMany(models.Song, { foreignKey: 'releaseId'})
   };
 
   Release.newRelease = async function({artistId, coverURL, name, releaseDate, bio=null, credits=null}){

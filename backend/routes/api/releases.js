@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const asyncHandler = require('express-async-handler');
-const { Release, Artist } = require('../../db/models')
+const { Release, Artist, Song } = require('../../db/models')
 const { check } = require('express-validator');
 const { requireAuth, checkIfCurrentUser } = require('../../utils/auth.js');
 const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3.js');
@@ -59,31 +59,32 @@ router.get('/releases/:artistUrl/:releaseUrl', asyncHandler( async (req, res) =>
             model: Release, 
             where: {
                 releaseURL: releaseUrl,
-            }
+            },
+            include: [{
+                model: Song
+            }]
         }]
     })
-
-    // const release = await Release.findOne({
-    //     where: {
-    //         name: releaseName,
-    //     },
-    //     include: [{ model: Artist, attributes: ['customURL', 'name']}]
-    // })
-
-    // if(!artist) {
-    //     const err = new Error('Artist not found!');
-    //     err.status = 404;
-    //     err.title = 'Artist not found!';
-    //     err.errors = ['Artist not found!'];
-    //     return next(err);
-    // }
-
-    
-        // const release = artist.Releases.filter(target => target.name === releaseName);
         return res.json({
             artist
         })     
     
+}))
+
+router.get('/releases/:id', asyncHandler( async (req, res) => {
+    const id = req.params.id
+
+    const release = await Release.findByPk(id, {
+        attributes: ['releaseURL'],
+        include: [{
+            model: Artist,
+            attributes: ['customURL']
+        }]
+    })
+
+    return res.json({
+        release
+    })
 }))
 
 module.exports = router;

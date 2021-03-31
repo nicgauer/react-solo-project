@@ -29,3 +29,9 @@ export const getRelease = async (artistUrl, releaseName) => {
     const response = await release.json();
     return response;
 }
+
+export const getFullUrl = async (release) => {
+    const response = await csrfFetch(`/api/${release.id}`)
+    const result = await response.json();
+    return result;
+}

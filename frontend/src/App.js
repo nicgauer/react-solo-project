@@ -8,7 +8,7 @@ import Navigation from './components/Navigation';
 import HomePage from './components/HomePage';
 import NewArtistPage from './components/NewArtist';
 import ArtistPage from './components/ArtistPage';
-import CreateNewRelease from './components/CreateNewRelease';
+import NewRelease from './components/NewRelease';
 import ReleasePage from './components/ReleasePage';
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
             </Route>
 
             <Route path='/new-release'>
-              <CreateNewRelease />
+              <NewRelease />
             </Route>
 
             <Route path='/' exact>
