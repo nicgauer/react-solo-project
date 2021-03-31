@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING,
     },
+    releaseURL: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
     releaseDate: {
       type: DataTypes.DATE,
     },

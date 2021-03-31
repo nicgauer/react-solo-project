@@ -10,6 +10,10 @@ export const newRelease = async (release) => {
     if(credits) formData.append('credits', credits)
     if(image) formData.append('image', image)
 
+    //converts name to workable URL
+    const newurl = name.replace(/\s+/g, '-').toLowerCase();
+    formData.append('releaseURL', newurl)
+
         const response = await csrfFetch('/api/new-release', {
             method: 'POST',
             headers: {

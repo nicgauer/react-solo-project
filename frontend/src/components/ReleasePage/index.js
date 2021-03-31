@@ -14,7 +14,7 @@ const ReleasePage = () => {
         (async () => {
             const response = await releaseActions.getRelease(url, release);
             console.log(response);
-            if(response) setRelease(response.release);
+            if(response) setRelease(response.artist);
             setLoaded(true);
         })();
     }, [])

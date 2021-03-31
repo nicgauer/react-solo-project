@@ -25,14 +25,14 @@ singleMulterUpload("image"),
 requireAuth,
 validateNewRelease, 
 asyncHandler(async (req, res, next) => {
-    const { artistId, name, releaseDate, bio, credits } = req.body;
+    const { artistId, name, releaseURL, releaseDate, bio, credits } = req.body;
     // const artist = await Artist.findByPk(artistId);
     
     // if(checkIfCurrentUser(artist.userId, req)){
         coverURL = await singlePublicFileUpload(req.file);
         
         const release = await Release.create({
-            artistId, coverURL, name, releaseDate, bio, credits
+            artistId, coverURL, name, releaseURL, releaseDate, bio, credits
         })
 
         return res.json({
@@ -44,25 +44,31 @@ asyncHandler(async (req, res, next) => {
     
 }))
 
-router.get('/releases/:artistUrl/:releaseName', asyncHandler( async (req, res) => {
+router.get('/releases/:artistUrl/:releaseUrl', asyncHandler( async (req, res) => {
     const artistUrl = req.params.artistUrl;
-    const releaseName = req.params.releaseName
+    const releaseUrl = req.params.releaseUrl
     console.log('Artist URL', artistUrl);
-    console.log('Release ', releaseName);
+    console.log('Release ', releaseUrl);
 
-    // const artist = await Artist.findOne({ 
-    //     where: { 
-    //         customURL: artistUrl
-    //     },
-    //     include: Release
-    // })
-
-    const release = await Release.findOne({
-        where: {
-            name: releaseName,
+    const artist = await Artist.findOne({ 
+        attributes: ['customURL', 'name', 'location', 'pictureURL'],
+        where: { 
+            customURL: artistUrl
         },
-        include: Artist
+        include: [{ 
+            model: Release, 
+            where: {
+                releaseURL: releaseUrl,
+            }
+        }]
     })
+
+    // const release = await Release.findOne({
+    //     where: {
+    //         name: releaseName,
+    //     },
+    //     include: [{ model: Artist, attributes: ['customURL', 'name']}]
+    // })
 
     // if(!artist) {
     //     const err = new Error('Artist not found!');
@@ -75,7 +81,7 @@ router.get('/releases/:artistUrl/:releaseName', asyncHandler( async (req, res) =
     
         // const release = artist.Releases.filter(target => target.name === releaseName);
         return res.json({
-            release
+            artist
         })     
     
 }))

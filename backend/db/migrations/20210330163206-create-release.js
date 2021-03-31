@@ -21,6 +21,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      releaseURL: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       releaseDate: {
         allowNull: false,
         type: Sequelize.DATE
