@@ -44,4 +44,40 @@ asyncHandler(async (req, res, next) => {
     
 }))
 
+router.get('/releases/:artistUrl/:releaseName', asyncHandler( async (req, res) => {
+    const artistUrl = req.params.artistUrl;
+    const releaseName = req.params.releaseName
+    console.log('Artist URL', artistUrl);
+    console.log('Release ', releaseName);
+
+    // const artist = await Artist.findOne({ 
+    //     where: { 
+    //         customURL: artistUrl
+    //     },
+    //     include: Release
+    // })
+
+    const release = await Release.findOne({
+        where: {
+            name: releaseName,
+        },
+        include: Artist
+    })
+
+    // if(!artist) {
+    //     const err = new Error('Artist not found!');
+    //     err.status = 404;
+    //     err.title = 'Artist not found!';
+    //     err.errors = ['Artist not found!'];
+    //     return next(err);
+    // }
+
+    
+        // const release = artist.Releases.filter(target => target.name === releaseName);
+        return res.json({
+            release
+        })     
+    
+}))
+
 module.exports = router;

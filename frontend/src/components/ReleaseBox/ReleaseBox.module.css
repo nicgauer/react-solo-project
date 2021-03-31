@@ -1,0 +1,21 @@
+.container {
+    cursor: pointer;
+    height:160px;
+    width: 160px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.image {
+    height: 100px;
+    width: 100px;
+}
+
+.artistName {
+    font-size:20px;
+    text-shadow: 2px 2px 2px rgba(215, 219, 219, .65);
+}

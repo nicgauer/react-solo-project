@@ -1,13 +1,14 @@
+import ReleaseBox from '../ReleaseBox';
+
 const ArtistDisplay = ({ artist }) => {
     return (
         <div>
             {artist.name}
             <img src={artist.pictureURL} />
+            <div style={{display: 'flex'}}>
             {artist.Releases.map((release) => 
-                <li key={release.id}>
-                    <h4>{release.name}</h4>
-                    <img src={release.coverURL} />
-                </li>)}
+                <ReleaseBox release={release} />)}
+            </div>
         </div>
     )
 }

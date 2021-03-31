@@ -19,3 +19,9 @@ export const newRelease = async (release) => {
         })
         return response;
 }
+
+export const getRelease = async (artistUrl, releaseName) => {
+    const release = await csrfFetch(`/api/releases/${artistUrl}/${releaseName}`)
+    const response = await release.json();
+    return response;
+}

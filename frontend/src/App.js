@@ -9,7 +9,7 @@ import HomePage from './components/HomePage';
 import NewArtistPage from './components/NewArtist';
 import ArtistPage from './components/ArtistPage';
 import CreateNewRelease from './components/CreateNewRelease';
-
+import ReleasePage from './components/ReleasePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,9 +40,12 @@ function App() {
               <HomePage />
             </Route>
 
-            
-            <Route path='/:url'>
+            <Route path='/:url' exact>
                 <ArtistPage />
+            </Route>
+   
+            <Route path='/:url/:release'>
+                <ReleasePage />
             </Route>
         </Switch>
       )}
