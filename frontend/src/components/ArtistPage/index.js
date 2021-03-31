@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+// import {useDispatch} from 'react-redux';
 import PageNotFound from '../PageNotFound';
 import ArtistDisplay from './ArtistDisplay'
 import * as artistActions from '../../store/artists';
@@ -17,7 +17,7 @@ const ArtistPage = () => {
             if(response) setArtist(response.artist)
             setLoaded(true);
         })();
-    }, [])
+    }, [url])
 
     return (
         <div>

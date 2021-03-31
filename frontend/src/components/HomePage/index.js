@@ -13,14 +13,14 @@ const HomePage = () => {
             const list = await getOwnedArtists(user.id);
             if(list) setArtists(list.artists);
         })()
-    }, [])
+    }, [user.id])
 
     return (
         <div>
             {user && (
                 <div>
                     <h1>Welcome, {user.username}</h1>
-                    <img src={user.pictureURL} />
+                    <img src={user.pictureURL} alt={user.username} />
                     <h3>Your artists...</h3>
                         <div className={styles.bubbleContainer}>
                             {artists && artists.map(artist => <ArtistBubble key={artist.id} artist={artist} />)}

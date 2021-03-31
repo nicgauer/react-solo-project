@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import * as artistActions from '../../store/artists';
 import * as releaseActions from '../../store/releases';
-import { Redirect, useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import SongUploadPage from './SongUploadPage';
 import PageNotFound from '../PageNotFound';
 
@@ -22,7 +22,7 @@ const NewReleaseForm = () => {
 
 
 
-    const history = useHistory();
+    // const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const NewReleaseForm = () => {
                     setArtistId(artists.artists[0].id)
                 }
         })();
-    }, [])
+    }, [sessionUser.id])
 
     useEffect(() => {
         if(release){
@@ -68,6 +68,7 @@ const NewReleaseForm = () => {
         return (
             <form onSubmit={submitHandler}>
             <h2>Create New Release</h2>
+            {errors && errors.map(error => <p key={error}>{error.message}</p>)}
             <label>
                 Select artist
                 <select

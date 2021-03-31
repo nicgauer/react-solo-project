@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import * as sessionActions from '../../store/session';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import styles from './LoginForm.module.css';
 import confirmIcon from '../icons/icons8-checked-26.png';
@@ -9,7 +9,7 @@ import cancelIcon from '../icons/icons8-delete-26.png';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
+    // const sessionUser = useSelector(state => state.session.user);
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);

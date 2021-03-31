@@ -11,7 +11,7 @@ const ArtistBubble = ({ artist }) => {
 
     return (
         <div className={styles.container} onClick={clickHandler}>
-            <img className={styles.artistImg} src={artist.pictureURL} />
+            <img className={styles.artistImg} src={artist.pictureURL} alt={artist.name} />
             <h2 className={styles.artistName}>{artist.name}</h2>
         </div>
     )

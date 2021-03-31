@@ -40,12 +40,12 @@ const ProfileButton = ({ user }) => {
                 if(ownedArtists) setArtists(ownedArtists.artists);
             }
         })()
-    }, [])
+    }, [user])
 
     return(
         <>
             <button onClick={openMenu} className="nav__profile-button">
-                <img className='nav__icon' src={profileIcon} title='Profile' />
+                <img className='nav__icon' src={profileIcon} title='Profile' alt='profile' />
             </button>
             {showMenu && (
                 <ul className='profile-dropdown'>

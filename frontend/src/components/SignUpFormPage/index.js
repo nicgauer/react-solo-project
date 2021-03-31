@@ -17,7 +17,7 @@ const SignUpFormPage = () => {
     const [password, setPassword] = useState('');
     const [passwordErrors, setPasswordErrors] = useState([]);
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [errors, setErrors] = useState([]);
+    // const [errors, setErrors] = useState([]);
 
     const [image, setImage] = useState(null);
     
@@ -80,14 +80,14 @@ const SignUpFormPage = () => {
         e.preventDefault();
         validation();
         if(password === confirmPassword){
-            setErrors([]);
+            // setErrors([]);
             return dispatch(sessionActions.createUser({ username, email, password, image }))
             .catch(async (res) => {
-                const data = await res.json();
-                if(data && data.errors) setErrors(data.errors);
+                // const data = await res.json();
+                // if(data && data.errors) setErrors(data.errors);
             })
         }
-        return setErrors(['Confirm password must match Password!']);
+        // return setErrors(['Confirm password must match Password!']);
     }
 
     return(
@@ -151,6 +151,7 @@ const SignUpFormPage = () => {
                                 src={confirmIcon} 
                                 className='signup__icon'
                                 title='Sign up'
+                                alt='Sign Up'
                             />
                     </button>
 
@@ -162,6 +163,7 @@ const SignUpFormPage = () => {
                                 src={cancelIcon} 
                                 className='signup__icon'
                                 title='Cancel'
+                                alt='Cancel'
                             />
                     </button>
 

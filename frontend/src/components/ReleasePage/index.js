@@ -17,7 +17,7 @@ const ReleasePage = () => {
             if(response) setRelease(response.artist);
             setLoaded(true);
         })();
-    }, [])
+    }, [release, url])
 
     return (
         <div>

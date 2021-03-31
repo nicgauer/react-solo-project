@@ -30,7 +30,7 @@ export const newArtist = (artist) => async dispatch => {
         body: formData,
     })
 
-    const data = await response.json();
+    // const data = await response.json();
     // dispatch(newArtist(data.artist))
     return response;
 }
