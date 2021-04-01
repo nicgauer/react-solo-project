@@ -1,0 +1,84 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    background: transparent;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+}
+
+.container {
+    min-height: 88vh;
+    margin-right: auto;
+    margin-left: auto;
+    flex-grow: 1;
+    margin-bottom: 40px;
+    padding-bottom: 80px;
+    width: 915px;
+    position: relative;
+}
+
+.releaseTitle {
+    font-size: 28px;
+    margin: -4px 30px 8px 0;
+    word-wrap: break-word;
+    max-width: 726px;
+}
+
+.subtitle {
+    font-size: 14px;
+    margin: 0 0 7px;
+}
+
+.artistName {
+    cursor: pointer;
+    font-style: italic;
+}
+
+.leftMiddleColumns {
+    width: 756px;
+    float:left;    
+    display:block;
+}
+
+.leftColumn {
+    width: 376px;
+    float:left;
+}
+
+.middleColumn {
+    float: right;
+    width: 350px;
+}
+.rightColumn {
+    width: 120px;
+    float:right;
+    word-wrap: break-word;
+}
+
+.albumArt {
+    width:350px;
+    height: 350px;
+    position: relative;
+    outline:1px solid rgba(0, 0, 0, 0.5);
+    outline-offset: -1px;
+}
+
+.bioContainer {
+    cursor: pointer;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    min-height: 30px;
+    text-align: center;
+}
+
+.artistImage {
+    height: 120px;
+    width: 120px;
+}
+
+.artistBio {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

@@ -12,12 +12,12 @@ const ReleasePage = () => {
 
     useEffect(() => {
         (async () => {
-            const response = await releaseActions.getRelease(url, release);
-            console.log(response);
-            if(response) setRelease(response.artist);
-            setLoaded(true);
+                const response = await releaseActions.getRelease(url, release);
+                console.log(response);
+                if(response) setRelease(response.artist);
+                setLoaded(true);
         })();
-    }, [release, url])
+    }, [])
 
     return (
         <div>

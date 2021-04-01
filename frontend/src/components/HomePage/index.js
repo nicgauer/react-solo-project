@@ -10,10 +10,12 @@ const HomePage = () => {
 
     useEffect(() => {
         (async () => {
-            const list = await getOwnedArtists(user.id);
-            if(list) setArtists(list.artists);
+            if(user){
+                const list = await getOwnedArtists(user.id);
+                if(list) setArtists(list.artists);
+            }
         })()
-    }, [user.id])
+    })
 
     return (
         <div>

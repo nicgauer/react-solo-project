@@ -17,7 +17,7 @@ const ArtistPage = () => {
             if(response) setArtist(response.artist)
             setLoaded(true);
         })();
-    }, [url])
+    }, [])
 
     return (
         <div>
