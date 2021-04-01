@@ -3,14 +3,13 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    margin: 10px;
-    margin-top: 0px;
-    width: 168px
+    margin-bottom: 10px;
+    width: 100%;
 }
 
 .image {
-    height: 168px;
-    width: 168px;
+    height: 120px;
+    width: 120px;
 }
 
 .artistName {

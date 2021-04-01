@@ -1,0 +1,8 @@
+.clickText {
+    cursor: pointer;
+}
+
+.clickText:hover {
+    text-decoration: underline;
+    font-style: italic;
+}

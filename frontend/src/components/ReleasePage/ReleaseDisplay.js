@@ -2,6 +2,7 @@ import AudioPlayer from './AudioPlayer';
 import styles from './ReleaseDisplay.module.css'
 import {useHistory} from 'react-router-dom';
 import ArtistSideBar from '../ArtistSideBar';
+import Discography from '../DiscographyDisplay'
 
 const ReleaseDisplay = ({ release }) => {
     const Artist = release;
@@ -37,6 +38,7 @@ const ReleaseDisplay = ({ release }) => {
 
             <div className={styles.rightColumn}>
                 <ArtistSideBar artist={Artist} />
+                <Discography artist={Artist} />
             </div>
 
         </div>

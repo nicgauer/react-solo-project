@@ -9,10 +9,15 @@ const ArtistSideBar = ({ artist }) => {
     }
 
     return (
-        <div className={styles.bioContainer} onClick={clickHandler}>
-                    <img className={styles.artistImage} src={artist.pictureURL} alt={artist.name} />     
-                    <h3>{artist.name}</h3>
-                    <pre className={styles.artistBio}>{artist.bio}</pre>
+        <div className={styles.wrapper}>
+
+            <div className={styles.bioContainer}>
+                        <img className={styles.artistImage} onClick={clickHandler} src={artist.pictureURL} alt={artist.name} />     
+                        <h3 className={styles.artistName}>{artist.name}</h3>
+                        <p className={styles.artistLocation}>{artist.location}</p>
+                        <button className={styles.follow}>Follow</button>
+            </div>
+                        <pre className={styles.artistBio}>{artist.bio}</pre>
         </div>
     )
 }

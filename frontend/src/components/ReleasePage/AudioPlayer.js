@@ -11,7 +11,7 @@ const AudioPlayer = ({ songs }) => {
                 <audio className={styles.player} controls src={currentSong.songURL} />
                 <div>
                     {songs && songs.map(song => 
-                        <button key={song.id} onClick={() => setCurrentSong(song.songURL)}>{song.name}</button>
+                        <button key={song.id} onClick={() => setCurrentSong(song)}>{song.name}</button>
                         )}
                 </div> 
             </div>
