@@ -64,21 +64,3 @@
     outline-offset: -1px;
 }
 
-.bioContainer {
-    cursor: pointer;
-    display: block;
-    position: relative;
-    overflow: hidden;
-    min-height: 30px;
-    text-align: center;
-}
-
-.artistImage {
-    height: 120px;
-    width: 120px;
-}
-
-.artistBio {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}

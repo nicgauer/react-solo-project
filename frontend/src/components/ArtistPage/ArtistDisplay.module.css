@@ -1,0 +1,45 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    background: transparent;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+}
+
+.container {
+    min-height: 88vh;
+    margin-right: auto;
+    margin-left: auto;
+    flex-grow: 1;
+    margin-bottom: 40px;
+    padding-bottom: 80px;
+    width: 915px;
+    position: relative;
+}
+
+.releaseContainer {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.leftMiddleColumns {
+    width: 756px;
+    float:left;    
+    display:block;
+}
+
+.leftColumn {
+    width: 376px;
+    float:left;
+}
+
+.middleColumn {
+    float: right;
+    width: 350px;
+}
+.rightColumn {
+    width: 120px;
+    float:right;
+    word-wrap: break-word;
+}

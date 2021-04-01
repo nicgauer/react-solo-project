@@ -104,7 +104,7 @@ const NewReleaseForm = () => {
                 <input type='textarea' value={credits} onChange={(e) => setCredits(e.target.value)} />
             </label>
 
-            <button type='submit'>Submit!!</button>
+            <button type='submit'>Proceed to Song Upload</button>
         </form>
     )
     }else {

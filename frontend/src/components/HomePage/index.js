@@ -15,7 +15,7 @@ const HomePage = () => {
                 if(list) setArtists(list.artists);
             }
         })()
-    })
+    }, [])
 
     return (
         <div>

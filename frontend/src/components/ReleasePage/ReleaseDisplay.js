@@ -1,6 +1,7 @@
 import AudioPlayer from './AudioPlayer';
 import styles from './ReleaseDisplay.module.css'
 import {useHistory} from 'react-router-dom';
+import ArtistSideBar from '../ArtistSideBar';
 
 const ReleaseDisplay = ({ release }) => {
     const Artist = release;
@@ -34,12 +35,8 @@ const ReleaseDisplay = ({ release }) => {
 
             </div>
 
-            <div className={styles.rightColumn} onClick={clickHandler}>
-                <div className={styles.bioContainer}>
-                    <img className={styles.artistImage} src={Artist.pictureURL} alt={Artist.name} />     
-                    <h3>{Artist.name}</h3>
-                    <pre className={styles.artistBio}>{Artist.bio}</pre>
-                </div>
+            <div className={styles.rightColumn}>
+                <ArtistSideBar artist={Artist} />
             </div>
 
         </div>

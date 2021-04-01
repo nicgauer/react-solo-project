@@ -1,13 +1,22 @@
 import ReleaseBox from '../ReleaseBox';
+import ArtistSideBar from '../ArtistSideBar';
+
+import styles from './ArtistDisplay.module.css';
 
 const ArtistDisplay = ({ artist }) => {
     return (
-        <div>
-            {artist.name}
-            <img src={artist.pictureURL} alt={artist.name} />
-            <div style={{display: 'flex'}}>
-            {artist.Releases.map((release) => 
-                <ReleaseBox key={release.id} release={release} artist={artist} />)}
+        <div className={styles.wrapper}>
+            <div className={styles.container}>
+                <div className={styles.leftMiddleColumns}>
+                    <div className={styles.releaseContainer}>
+                    {artist.Releases.map((release) => 
+                        <ReleaseBox key={release.id} release={release} artist={artist} />)}
+                    </div>
+
+                </div>
+                <div className={styles.rightColumn}>
+                    <ArtistSideBar artist={artist} />
+                </div>
             </div>
         </div>
     )
