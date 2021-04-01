@@ -11,6 +11,8 @@ import ArtistPage from './components/ArtistPage';
 import NewRelease from './components/NewRelease';
 import ReleasePage from './components/ReleasePage';
 
+import Loading from './components/Loading';
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -43,8 +45,9 @@ function App() {
             <Route path='/:url' exact>
                 <ArtistPage />
             </Route>
+
    
-            <Route path='/:url/:release'>
+            <Route path='/:url/:release' exact>
                 <ReleasePage />
             </Route>
         </Switch>

@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {useHistory} from 'react-router-dom';
 import * as songActions from '../../store/song';
+import Loading from '../Loading';
 
 const SongUploadPage = ({ release, artist }) => {
     const [name, setName] = useState('');
@@ -58,7 +59,7 @@ const SongUploadPage = ({ release, artist }) => {
 
     return (
         <div>
-            {uploading && (<h2>Uploading...</h2>)}
+            {uploading && (<Loading uploading={true} />)}
             {!uploading && (
                 <form onSubmit={submitHandler}>
                     <h2>Upload Songs for {release.name}</h2>

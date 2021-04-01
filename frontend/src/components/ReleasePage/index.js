@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PageNotFound from '../PageNotFound';
 import ReleaseDisplay from './ReleaseDisplay';
+import Loading from '../Loading';
 
 import * as releaseActions from '../../store/releases';
 
@@ -21,7 +22,7 @@ const ReleasePage = () => {
 
     return (
         <div>
-            {!loaded && (<h2>Loading...</h2>)}
+            {!loaded && (<Loading />)}
             {loaded && targetRelease && (<ReleaseDisplay release={targetRelease} />)}
             {loaded && !targetRelease && (<PageNotFound />)}
             {console.log(url, release)}
