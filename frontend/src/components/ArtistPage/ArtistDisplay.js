@@ -9,6 +9,7 @@ const ArtistDisplay = ({ artist }) => {
             <div className={styles.container}>
                 <div className={styles.leftMiddleColumns}>
                     <div className={styles.releaseContainer}>
+                    {!artist.Releases[0] && (<h2>This artist hasn't released anything yet!</h2>)}
                     {artist.Releases.map((release) => 
                         <ReleaseBox key={release.id} release={release} artist={artist} />)}
                     </div>

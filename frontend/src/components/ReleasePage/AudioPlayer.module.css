@@ -2,16 +2,76 @@
     /* background-color: blue; */
 }
 
-.playerContainer {
+.songlistContainer {
     display:flex;
     flex-direction: column;
-    align-items: center;
+}
+
+.playerContainer {
+    display:grid;
+    grid-template-columns: 65px 3fr;
+    grid-template-rows: 30px 50px;
+    grid-template-areas: 
+        'ppButton name'
+        'ppButton duration'
 }
 
 .label {
-    text-align: center;
+    grid-area: name;
+    text-align: left;
+    padding: 5px;
+    padding-bottom: 0px;
 }
 
 audio::-webkit-media-controls-panel {
     background-color: rgba(205, 205, 205)
+}
+
+.playPauseAudio {
+    grid-area: ppButton;
+    height: 50px;
+    width: 50px;
+}
+
+.selectSong {
+    height: 15px;
+    width: 15px;
+}
+
+.button {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color: transparent;
+    border: 1px solid grey;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.currentSong {
+    margin-left: 5px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.selectableSong {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.selectableSong:hover {
+    text-decoration: underline;
+}
+
+.durationText {
+    grid-area: duration;
+    padding: 5px;
+    padding-top: 0px;
+}
+
+.songContainer {
+    display:flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

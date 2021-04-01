@@ -7,6 +7,7 @@ const ReleaseBox = ({ release, artist, style }) => {
 
     const clickHandler = () => {
         history.push(`/${artist.customURL}/${release.releaseURL}`)
+        window.location.reload();
     }
 
     let styles = stylesNormal;

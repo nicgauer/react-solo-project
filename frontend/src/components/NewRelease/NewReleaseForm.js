@@ -110,7 +110,7 @@ const NewReleaseForm = () => {
     }else {
         return (
             <>
-                {release && <SongUploadPage release={release.release} />}
+                {release && <SongUploadPage release={release.release} artist={ownedArtists[artistId]} />}
                 {!release && <PageNotFound />}
             </>
         )

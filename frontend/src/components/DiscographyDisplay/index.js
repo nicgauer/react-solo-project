@@ -39,7 +39,7 @@ const Discography = ({ artist }) => {
     if(!seeMore){     
             return (
                 <div>
-                <h2>Discography</h2>
+                <h2 className={styles.discography}>Discography</h2>
                 <ReleaseBox release={Releases[0]} artist={artist} style={'discography'} />
                 <h5 className={styles.clickText} onClick={seeMoreToggle}>See more...</h5>
             </div>
@@ -47,7 +47,7 @@ const Discography = ({ artist }) => {
     }else {
         return (
             <div>
-            <h2>Discography</h2>
+            <h2 className={styles.discography}>Discography</h2>
             <ReleaseBox release={Releases[0]} artist={artist} style={'discography'} />
             {Releases.length > 1 && (<ReleaseBox release={Releases[1]} artist={artist} style={'discography'} />)}
             {Releases.length > 2 && (<ReleaseBox release={Releases[2]} artist={artist} style={'discography'} />)}  
