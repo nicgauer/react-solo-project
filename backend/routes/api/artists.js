@@ -6,7 +6,7 @@ const { requireAuth, checkIfCurrentUser } = require('../../utils/auth');
 const { Artist, Release } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3.js');
+const { singlePublicFileUpload, singleMulterUpload, multipleMulterUpload, multiplePublicFileUpload } = require('../../awsS3.js');
 
 const validateNewArtist = [
     check('name')
@@ -41,20 +41,26 @@ router.get('/artists/:userId', asyncHandler( async (req, res) => {
 }))
 
 
-router.post('/new-artist', singleMulterUpload("image"), requireAuth, validateNewArtist, asyncHandler(async (req, res) => {
-    const { name, customURL, bio, location, userId } = req.body;
+router.post('/new-artist', 
+    requireAuth, 
+    validateNewArtist,
+    multipleMulterUpload('images'),
+    asyncHandler(async (req, res) => {
+    const { name, customURL, pageColor, textColor, bio, location, userId } = req.body;
+        const images = await multiplePublicFileUpload(req.files)
+        console.log(images);
+        const pictureURL = images[0];
+        const bannerURL = images[1];
+        const backgroundURL = images[2];        
 
-    // console.log(req);
-
-    // if(checkIfCurrentUser(userId, req)){
-        // if(req.file){
-           const pictureURL = await singlePublicFileUpload(req.file);
-        // }
-        
         const artist = await Artist.create({ 
             name, 
             customURL, 
             pictureURL,
+            bannerURL,
+            backgroundURL,
+            pageColor,
+            textColor,
             bio,
             location,
             userId,

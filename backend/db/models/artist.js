@@ -15,6 +15,18 @@ module.exports = (sequelize, DataTypes) => {
     pictureURL: {
       type:DataTypes.STRING,
     },
+    bannerURL: {
+      type:DataTypes.STRING,
+    },
+    backgroundURL: {
+      type:DataTypes.STRING,
+    },
+    pageColor: {
+      type:DataTypes.STRING,
+    },
+    textColor: {
+      type:DataTypes.STRING,
+    },
     bio: {
       type:DataTypes.TEXT,
     },

@@ -19,7 +19,14 @@ const NewArtistForm = () => {
     const [location, setLocation] = useState('');
     const [errors, setErrors] = useState([]);
 
+    const [pageColor, setPageColor] = useState('#000000');
+    const [textColor, setTextColor] = useState('#000000');
+
     const [image, setImage] = useState(null);
+
+    const [profileImage, setProfileImage] = useState(null)
+    const [bannerImage, setBannerImage] = useState(null)
+    const [backgroundImage, setBackgroundImage] = useState(null)
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -62,18 +69,47 @@ const NewArtistForm = () => {
         if(file) setImage(file);
     }
 
+    const updateProfileImage = (e) => {
+        const file = e.target.files[0];
+        if(file) setProfileImage(file);
+    }
+
+    const updateBannerImage = (e) => {
+        const file = e.target.files[0];
+        if(file) setBannerImage(file);
+    }
+    
+    const updateBackgroundImage = (e) => {
+        const file = e.target.files[0];
+        if(file) setBackgroundImage(file);
+    }
+
     const submitHandler = async (e) => {
         e.preventDefault();
-        await validation();
-            return dispatch(artistActions.newArtist({ 
-                image, name, customURL, bio, location, userId: sessionUser.id
-            }))
-            .then(history.push('/'))
-            .catch(async (res) => {
-                const data = await res.json();
-                if(data && data.errors) setErrors(data.errors);
-            })       
+        console.log('submit handler')
+        let images = [];
+        if(profileImage) images[0] = profileImage;
+        if(bannerImage) images[1] = bannerImage;
+        if(backgroundImage) images[2] = backgroundImage;
+
+        console.log(images)
+        // await validation()
+            const artist = await artistActions.newArtist({ 
+                images,
+                name,
+                customURL,
+                bio,
+                location,
+                userId: sessionUser.id
+            })
+
+            if(artist) console.log('success!');
+            
+        // } catch (e) {
+        //     // setErrors(e);
+        //     }     
     }
+
 
     return (
         <form onSubmit={submitHandler}>
@@ -91,7 +127,41 @@ const NewArtistForm = () => {
                 Profile Image
                 <input 
                     type="file"
-                    onChange={updateFile}
+                    onChange={updateProfileImage}
+                />
+            </label>
+
+            <label>
+                Profile Banner Image
+                <input 
+                    type="file"
+                    onChange={updateBannerImage}
+                />
+            </label>
+
+            <label>
+                Profile Background Image
+                <input 
+                    type="file"
+                    onChange={updateBackgroundImage}
+                />
+            </label>
+
+            <label>
+                Profile Page Color
+                <input 
+                    type="color"
+                    value={pageColor}
+                    onChange={(e) => setPageColor(e.target.value)}
+                />
+            </label>
+
+            <label>
+                Profile Page Text Color
+                <input 
+                    type="color"
+                    value={textColor}
+                    onChange={(e) => setTextColor(e.target.value)}
                 />
             </label>
 

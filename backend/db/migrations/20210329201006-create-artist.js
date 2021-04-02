@@ -20,6 +20,18 @@ module.exports = {
       pictureURL: {
         type: Sequelize.STRING
       },
+      bannerURL: {
+        type: Sequelize.STRING
+      },
+      backgroundURL: {
+        type: Sequelize.STRING
+      },
+      pageColor: {
+        type: Sequelize.STRING
+      },
+      textColor: {
+        type: Sequelize.STRING
+      },
       bio: {
         type: Sequelize.TEXT
       },

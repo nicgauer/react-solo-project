@@ -9,11 +9,11 @@
 
 .playerContainer {
     display:grid;
-    grid-template-columns: 65px 3fr 35px 35px;
+    grid-template-columns: 65px 2fr 2fr 35px 35px;
     grid-template-rows: 30px 30px;
     grid-template-areas: 
-        'ppButton name prev next'
-        'ppButton duration prev next'
+        'ppButton name duration prev next'
+        'ppButton prog prog prev next'
 }
 
 .label {
@@ -86,8 +86,12 @@ audio::-webkit-media-controls-panel {
 
 .durationText {
     grid-area: duration;
-    padding: 5px;
-    padding-top: 0px;
+    text-align: left;
+    padding: 8px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    font-size: 14px;
+
 }
 
 .songContainer {
