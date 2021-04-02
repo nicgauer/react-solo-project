@@ -13,14 +13,42 @@
     margin-left: auto;
     flex-grow: 1;
     margin-bottom: 40px;
+    padding: 35px 30px 45px;
     padding-bottom: 80px;
-    width: 915px;
+    width: 975px;
     position: relative;
+    box-sizing: border-box;
 }
 
 .releaseContainer {
     display:flex;
     flex-wrap: wrap;
+}
+
+.bannerContainer {
+    width: 975px;
+    margin: -35px -30px 44px -30px;
+}
+
+.banner {
+    width: 975px;
+    height: 180px;
+    /* object-fit: cover; */
+}
+
+.headerBar {
+    display:flex;
+    background-color: rgba(205, 205, 205, 0.4)
+}
+
+.headerLink {
+    cursor: pointer;
+    margin-left: 15px;
+    margin-right: 25px;
+}
+
+.headerLink:hover {
+    text-decoration: underline;
 }
 
 .leftMiddleColumns {

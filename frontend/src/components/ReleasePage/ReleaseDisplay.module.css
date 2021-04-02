@@ -14,8 +14,36 @@
     flex-grow: 1;
     margin-bottom: 40px;
     padding-bottom: 80px;
-    width: 915px;
+    padding: 35px 30px 45px;
+    width: 975px;
     position: relative;
+    box-sizing: border-box;
+}
+
+.bannerContainer {
+    width: 975px;
+    margin: -35px -30px 44px -30px;
+}
+
+.banner {
+    width: 975px;
+    height: 180px;
+    /* object-fit: cover; */
+}
+
+.headerBar {
+    display:flex;
+    background-color: rgba(205, 205, 205, 0.4)
+}
+
+.headerLink {
+    cursor: pointer;
+    margin-left: 15px;
+    margin-right: 25px;
+}
+
+.headerLink:hover {
+    text-decoration: underline;
 }
 
 .releaseTitle {
@@ -44,6 +72,7 @@
 .leftColumn {
     width: 376px;
     float:left;
+    overflow: hidden;
 }
 
 .middleColumn {
@@ -62,5 +91,19 @@
     position: relative;
     outline:1px solid rgba(0, 0, 0, 0.5);
     outline-offset: -1px;
+}
+
+.credits {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.about {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 

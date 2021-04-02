@@ -14,8 +14,18 @@ const ReleaseDisplay = ({ release }) => {
         history.push(`/${Artist.customURL}`)
     }
 
-    return (<div className={styles.wrapper}>
-        <div className={styles.container}>
+    return (<div className={styles.wrapper} style={{ backgroundImage: `url(${Artist.backgroundURL}`}}>
+        <div className={styles.container} style={{ background: Artist.pageColor || '#FFFFFF', color: Artist.textColor || '#000000'}}>
+            
+            <div className={styles.bannerContainer}>
+                <img className={styles.banner} src={Artist.bannerURL} alt={Artist.name} />
+                    <div className={styles.headerBar}>
+                        <h4 className={styles.headerLink}>Music</h4>
+                        <h4 className={styles.headerLink}>Merch</h4>
+                        <h4 className={styles.headerLink}>Social</h4>
+                    </div>
+            </div>
+            
             <div className={styles.leftMiddleColumns}>
                 <div className={styles.leftColumn}>
                     <h2 className={styles.releaseTitle}>{Release.name}</h2>
@@ -24,8 +34,9 @@ const ReleaseDisplay = ({ release }) => {
                         {Release.Songs[0] && (<AudioPlayer songs={Release.Songs} />)}
                     </div>
                     
-                    {Release.about && (<pre>{Release.about}</pre>)}
-                    {Release.credits && (<pre>{Release.credits}</pre>)}
+                    {Release.about && (<pre className={styles.about}>{Release.about}</pre>)}
+                    {Release.credits && (<pre className={styles.credits}>{Release.credits}</pre>)}
+                    {Release.releaseDate && (<pre className={styles.releaseDate}>{Release.releaseDate}</pre>)}
 
                 </div>
 

@@ -98,6 +98,8 @@ const NewArtistForm = () => {
                 images,
                 name,
                 customURL,
+                pageColor,
+                textColor,
                 bio,
                 location,
                 userId: sessionUser.id

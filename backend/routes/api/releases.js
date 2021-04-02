@@ -51,7 +51,6 @@ router.get('/releases/:artistUrl/:releaseUrl', asyncHandler( async (req, res) =>
     console.log('Release ', releaseUrl);
 
     const artist = await Artist.findOne({ 
-        attributes: ['customURL', 'name', 'location', 'pictureURL', 'bio'],
         where: { 
             customURL: artistUrl
         },
