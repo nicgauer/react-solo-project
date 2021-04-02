@@ -17,16 +17,16 @@
     padding: 35px 30px 45px;
     width: 975px;
     position: relative;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
 .bannerContainer {
-    width: 975px;
+    width: 1035px;
     margin: -35px -30px 44px -30px;
 }
 
 .banner {
-    width: 975px;
+    width: 1035px;
     height: 180px;
     /* object-fit: cover; */
 }
@@ -38,8 +38,7 @@
 
 .headerLink {
     cursor: pointer;
-    margin-left: 15px;
-    margin-right: 25px;
+    margin-left: 35px;
 }
 
 .headerLink:hover {

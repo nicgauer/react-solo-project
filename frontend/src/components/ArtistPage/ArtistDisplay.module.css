@@ -17,7 +17,6 @@
     padding-bottom: 80px;
     width: 975px;
     position: relative;
-    box-sizing: border-box;
 }
 
 .releaseContainer {
@@ -26,12 +25,12 @@
 }
 
 .bannerContainer {
-    width: 975px;
+    width: 1035px;
     margin: -35px -30px 44px -30px;
 }
 
 .banner {
-    width: 975px;
+    width: 1035px;
     height: 180px;
     /* object-fit: cover; */
 }

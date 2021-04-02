@@ -12,7 +12,6 @@ import { csrfFetch } from './csrf';
 
 //Create artist thunk
 export const newArtist = async (artist) => {
-    console.log('thunk')
     const { images, name, customURL, pageColor, textColor, bio, location, userId } = artist;
     const formData = new FormData();
     formData.append('name', name);
@@ -25,15 +24,10 @@ export const newArtist = async (artist) => {
     if(location) formData.append('location', location);
 
     if(images && images.length !== 0) {
-        console.log('if statement');
         for(let i = 0; i < images.length; i++) {
             formData.append("images", images[i]);
-            console.log('loop' , i);
         }
-        console.log('finished loop');
     };
-
-
 
     const response = await csrfFetch('/api/new-artist', {
         method: 'POST',
@@ -43,7 +37,9 @@ export const newArtist = async (artist) => {
         body: formData,
     })
 
-    return response;
+    const data = await response.json();
+
+    return data;
 }
 
 export const getArtist = async (url) => {

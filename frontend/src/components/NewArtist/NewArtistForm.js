@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import * as artistActions from '../../store/artists'
 import { Redirect, useHistory } from 'react-router-dom';
+
+import Loading from '../Loading';
+
+import styles from './NewArtist.module.css';
+import confirmIcon from '../icons/icons8-checked-26.png';
+import cancelIcon from '../icons/icons8-delete-26.png';
 
 const reservedURLs = [
     'new-artist',
@@ -28,8 +34,10 @@ const NewArtistForm = () => {
     const [bannerImage, setBannerImage] = useState(null)
     const [backgroundImage, setBackgroundImage] = useState(null)
 
+    const [uploading, setUploading] = useState(false);
+    const [newArtist, setNewArtist] = useState(null)
+
     const history = useHistory();
-    const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
     if(!sessionUser) return (
@@ -84,6 +92,10 @@ const NewArtistForm = () => {
         if(file) setBackgroundImage(file);
     }
 
+    const cancelHandler = () => {
+        history.push('/');
+    }
+
     const submitHandler = async (e) => {
         e.preventDefault();
         console.log('submit handler')
@@ -92,8 +104,7 @@ const NewArtistForm = () => {
         if(bannerImage) images[1] = bannerImage;
         if(backgroundImage) images[2] = backgroundImage;
 
-        console.log(images)
-        // await validation()
+        setUploading(true);
             const artist = await artistActions.newArtist({ 
                 images,
                 name,
@@ -105,7 +116,7 @@ const NewArtistForm = () => {
                 userId: sessionUser.id
             })
 
-            if(artist) console.log('success!');
+            if(artist) setNewArtist(artist);
             
         // } catch (e) {
         //     // setErrors(e);
@@ -114,93 +125,108 @@ const NewArtistForm = () => {
 
 
     return (
-        <form onSubmit={submitHandler}>
+        
+        <div className={styles.container}>
+        {uploading && newArtist && (<Redirect to={`/${newArtist.artist.customURL}`} />)}
+        {uploading && !newArtist && (<Loading uploading={true} />)}
+        {!uploading && !newArtist && (
+            <form className={styles.form} onSubmit={submitHandler}>
+                <h2 className={styles.title}>Create Artist</h2>
             {errors.map(error => <p key={error}>{error.message}</p>)}
-            <label>
-                Artist Name
-                <input
-                    type="text"
-                    value={name}
-                    onChange={nameHandler}
-                />
+            <label className={styles.label}>
+            Artist Name
+            <input
+            type="text"
+            value={name}
+            onChange={nameHandler}
+            />
+            </label>
+            
+            <label className={styles.label}>
+            Profile Image
+            <input 
+            type="file"
+            accept="image/*"
+            onChange={updateProfileImage}
+            />
+            </label>
+            
+            <label className={styles.label}>
+            Profile Banner Image
+            <input 
+            type="file"
+            accept="image/*"
+            onChange={updateBannerImage}
+            />
+            </label>
+            
+            <label className={styles.label}>
+            Profile Background Image
+            <input 
+            type="file"
+            accept="image/*"
+            onChange={updateBackgroundImage}
+            />
+            </label>
+            
+            <label className={styles.label}>
+            Profile Page Color
+            <input 
+            type="color"
+            value={pageColor}
+            onChange={(e) => setPageColor(e.target.value)}
+            />
+            </label>
+            
+            <label className={styles.label}>
+            Profile Page Text Color
+            <input 
+            type="color"
+            value={textColor}
+            onChange={(e) => setTextColor(e.target.value)}
+            />
+            </label>
+            
+            <label className={styles.label}>
+            Custom URL
+            <input
+            type="text"
+            value={customURL}
+            onChange={urlHandler}
+            />
             </label>
 
-            <label>
-                Profile Image
-                <input 
-                    type="file"
-                    onChange={updateProfileImage}
-                />
+            <label className={styles.label}>
+            Location
+            <input 
+            type="text"
+            value={location}
+            onChange={locationHandler}
+            />
             </label>
-
-            <label>
-                Profile Banner Image
-                <input 
-                    type="file"
-                    onChange={updateBannerImage}
-                />
+            
+            <label className={styles.label}>
+            Biography
+            <textarea
+            value={bio}
+            onChange={bioHandler}
+            />
             </label>
-
-            <label>
-                Profile Background Image
-                <input 
-                    type="file"
-                    onChange={updateBackgroundImage}
-                />
-            </label>
-
-            <label>
-                Profile Page Color
-                <input 
-                    type="color"
-                    value={pageColor}
-                    onChange={(e) => setPageColor(e.target.value)}
-                />
-            </label>
-
-            <label>
-                Profile Page Text Color
-                <input 
-                    type="color"
-                    value={textColor}
-                    onChange={(e) => setTextColor(e.target.value)}
-                />
-            </label>
-
-            <label>
-                Custom URL
-                <input
-                    type="text"
-                    value={customURL}
-                    onChange={urlHandler}
-                />
-            </label>
-
-            <label>
-                Biography
-                <input
-                    type="textarea"
-                    value={bio}
-                    onChange={bioHandler}
-                />
-            </label>
-
-            <label>
-                Location
-                <input 
-                    type="text"
-                    value={location}
-                    onChange={locationHandler}
-                    />
-            </label>
-
-            <div>
-                <button type="submit">
-                    Submit
+            
+            
+            <div className={styles.buttonContainer}>
+                <button className={styles.submitButton} type="submit">
+                Submit
                 </button>
-            </div>
-        </form>
-    )
-}
+                <button className={styles.cancelButton} onClick={cancelHandler}>Cancel</button>
 
-export default NewArtistForm;
+            </div>
+            </form>
+        )}
+        </div>
+
+
+        )
+    }
+    
+    export default NewArtistForm;
