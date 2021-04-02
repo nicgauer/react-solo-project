@@ -9,11 +9,11 @@
 
 .playerContainer {
     display:grid;
-    grid-template-columns: 65px 3fr;
-    grid-template-rows: 30px 50px;
+    grid-template-columns: 65px 3fr 35px 35px;
+    grid-template-rows: 30px 30px;
     grid-template-areas: 
-        'ppButton name'
-        'ppButton duration'
+        'ppButton name prev next'
+        'ppButton duration prev next'
 }
 
 .label {
@@ -31,6 +31,26 @@ audio::-webkit-media-controls-panel {
     grid-area: ppButton;
     height: 50px;
     width: 50px;
+}
+
+.nextButton {
+    grid-area: next;
+    background: transparent;
+    border:none;
+}
+
+.nextIcon {
+    cursor: pointer;
+}
+
+.prevButton {
+    grid-area: prev;
+    background: transparent;
+    border:none;
+}
+
+.prevIcon {
+    cursor: pointer;
 }
 
 .selectSong {
