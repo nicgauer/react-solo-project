@@ -3,6 +3,8 @@ import {useHistory} from 'react-router-dom';
 import * as songActions from '../../store/song';
 import Loading from '../Loading';
 
+import styles from './SongUpload.module.css';
+
 const SongUploadPage = ({ release, artist }) => {
     const [name, setName] = useState('');
     const [trackNumber, setTrackNumber] = useState('');
@@ -18,6 +20,10 @@ const SongUploadPage = ({ release, artist }) => {
     const updateFile = (e) => {
         const file = e.target.files[0];
         if(file) setAudio(file);
+    }
+
+    const cancelHandler = () => {
+        history.push(`/${artist.customURL}/${release.releaseURL}`)
     }
 
     const submitHandler = async (e) => {
@@ -43,6 +49,7 @@ const SongUploadPage = ({ release, artist }) => {
             setAudio(null);
             if(complete){
                 history.push(`/${artist.customURL}/${release.releaseURL}`)
+                window.location.reload();
             }else{
                 setUploading(false);
             }
@@ -58,17 +65,17 @@ const SongUploadPage = ({ release, artist }) => {
     // }
 
     return (
-        <div>
+        <div className={styles.container}>
             {uploading && (<Loading uploading={true} />)}
             {!uploading && (
-                <form onSubmit={submitHandler}>
+                <form className={styles.form} onSubmit={submitHandler}>
                     <h2>Upload Songs for {release.name}</h2>
-                    <label>
+                    <label className={styles.label}>
                         File Upload
                         <input type="file" onChange={updateFile} />
                     </label>
 
-                    <label>
+                    <label className={styles.label}>
                         Song Name
                         <input 
                         type="text"
@@ -77,7 +84,7 @@ const SongUploadPage = ({ release, artist }) => {
                         />
                     </label>
 
-                    <label>
+                    <label className={styles.label}>
                         Track Number
                         <input 
                         type="number"
@@ -86,7 +93,7 @@ const SongUploadPage = ({ release, artist }) => {
                         />
                     </label>
 
-                    <label>
+                    <label className={styles.label}>
                         Enable Download
                         <input 
                         type="radio"
@@ -96,7 +103,7 @@ const SongUploadPage = ({ release, artist }) => {
                         />
                     </label>
 
-                    <label>
+                    <label className={styles.label}>
                         About
                         <input 
                         type="textarea"
@@ -105,7 +112,7 @@ const SongUploadPage = ({ release, artist }) => {
                         />
                     </label>
 
-                    <label>
+                    <label className={styles.label}>
                         Credits
                         <input
                             type='textarea'
@@ -114,8 +121,11 @@ const SongUploadPage = ({ release, artist }) => {
                             />
                     </label>
 
-                    <button type="submit">Add more songs</button>
-                    <button type="submit" onClick={() => setComplete(true)}>Complete</button>
+                    <div className={styles.buttonContainer}>
+                        <button className={styles.submitButton} type="submit">Add more songs</button>
+                        <button className={styles.cancelButton} type="submit" onClick={() => setComplete(true)}>Complete</button>
+                        <button className={styles.cancelButton} onClick={cancelHandler}>Cancel</button>
+                    </div>
 
                 </form>
             )}
