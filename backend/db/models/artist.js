@@ -40,6 +40,7 @@ module.exports = (sequelize, DataTypes) => {
   Artist.associate = function(models) {
     Artist.belongsTo(models.User, { foreignKey: 'userId' })
     Artist.hasMany(models.Release, { foreignKey: 'artistId' })
+    Artist.hasMany(models.Follow, { foreignKey: 'artistId'})
   };
 
   Artist.getAssociatedReleases = () => {

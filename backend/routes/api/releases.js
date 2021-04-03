@@ -44,11 +44,9 @@ asyncHandler(async (req, res, next) => {
     
 }))
 
-router.get('/releases/:artistUrl/:releaseUrl', asyncHandler( async (req, res) => {
+router.get('/:artistUrl/:releaseUrl', asyncHandler( async (req, res) => {
     const artistUrl = req.params.artistUrl;
     const releaseUrl = req.params.releaseUrl
-    console.log('Artist URL', artistUrl);
-    console.log('Release ', releaseUrl);
 
     const artist = await Artist.findOne({ 
         where: { 
@@ -70,7 +68,7 @@ router.get('/releases/:artistUrl/:releaseUrl', asyncHandler( async (req, res) =>
     
 }))
 
-router.get('/releases/:id', asyncHandler( async (req, res) => {
+router.get('/:id', asyncHandler( async (req, res) => {
     const id = req.params.id
 
     const release = await Release.findByPk(id, {

@@ -1,9 +1,14 @@
 import ReleaseBox from '../ReleaseBox';
 import ArtistSideBar from '../ArtistSideBar';
 
+import FollowButton from '../FollowButton';
+
 import styles from './ArtistDisplay.module.css';
+import { useSelector } from 'react-redux';
 
 const ArtistDisplay = ({ artist }) => {
+
+    const user = useSelector((state) => state.session.user);
 
     return (
         <div className={styles.wrapper} style={{ backgroundImage: `url(${artist.backgroundURL}`}}>
@@ -30,6 +35,7 @@ const ArtistDisplay = ({ artist }) => {
                 </div>
                 <div className={styles.rightColumn}>
                     <ArtistSideBar artist={artist} />
+                    <FollowButton userId={user.id} artistId={artist.id} />
                 </div>
             </div>
         </div>

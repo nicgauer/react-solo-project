@@ -24,6 +24,7 @@ const SongUploadPage = ({ release, artist }) => {
 
     const cancelHandler = () => {
         history.push(`/${artist.customURL}/${release.releaseURL}`)
+        window.location.reload();
     }
 
     const submitHandler = async (e) => {
