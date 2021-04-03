@@ -1,7 +1,8 @@
 import styles from './ArtistSideBar.module.css';
 import {useHistory} from 'react-router-dom';
+import FollowButton from '../FollowButton';
 
-const ArtistSideBar = ({ artist }) => {
+const ArtistSideBar = ({ artist, userId }) => {
     const history = useHistory();
 
     const clickHandler = () => {
@@ -15,7 +16,7 @@ const ArtistSideBar = ({ artist }) => {
                         <img className={styles.artistImage} onClick={clickHandler} src={artist.pictureURL} alt={artist.name} />     
                         <h3 className={styles.artistName}>{artist.name}</h3>
                         <p className={styles.artistLocation}>{artist.location}</p>
-                        <button className={styles.follow}>Follow</button>
+                        {userId && (<FollowButton artistId={artist.id} userId={userId} />)}
             </div>
                         <pre className={styles.artistBio}>{artist.bio}</pre>
         </div>

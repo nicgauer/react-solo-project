@@ -1,6 +1,8 @@
 import {followButton, findFollow} from '../../store/follows';
 import { useState, useEffect } from 'react';
 
+import styles from './FollowButton.module.css';
+
 
 const FollowButton = ({ userId, artistId }) => {
     const [followString, setFollowString] = useState('Follow')
@@ -8,6 +10,7 @@ const FollowButton = ({ userId, artistId }) => {
     useEffect(() => {
         (async () => {
             const follow = await findFollow(userId, artistId);
+            console.log(follow);
             if(follow){
                 setFollowString('Unfollow');
             }
@@ -24,7 +27,7 @@ const FollowButton = ({ userId, artistId }) => {
     }
 
     return (
-        <button onClick={clickHandler}>
+        <button className={styles.follow} onClick={clickHandler}>
             {followString}
         </button>
     )

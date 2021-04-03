@@ -15,6 +15,7 @@ const ArtistPage = () => {
     useEffect(() => {
         (async () => {
             const response = await artistActions.getArtist(url)
+            console.log(response);
             if(response) setArtist(response.artist)
             setLoaded(true);
         })();

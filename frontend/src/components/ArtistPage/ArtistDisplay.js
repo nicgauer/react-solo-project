@@ -1,8 +1,6 @@
 import ReleaseBox from '../ReleaseBox';
 import ArtistSideBar from '../ArtistSideBar';
 
-import FollowButton from '../FollowButton';
-
 import styles from './ArtistDisplay.module.css';
 import { useSelector } from 'react-redux';
 
@@ -34,8 +32,7 @@ const ArtistDisplay = ({ artist }) => {
 
                 </div>
                 <div className={styles.rightColumn}>
-                    <ArtistSideBar artist={artist} />
-                    <FollowButton userId={user.id} artistId={artist.id} />
+                    <ArtistSideBar artist={artist} userId={user.id} />
                 </div>
             </div>
         </div>
