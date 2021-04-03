@@ -11,7 +11,9 @@ import SongUploader from '../SongUploader/SongUploadPage';
 const ReleaseDisplay = ({ release }) => {
     const user = useSelector((state) => state.session.user);
     const Artist = release;
+    const Follows = Artist.Follows;
     const Release = Artist.Releases[0];
+    console.log(Follows)
 
     const [ viewUploader, setViewUploader ] = useState(false);
 
@@ -62,14 +64,23 @@ const ReleaseDisplay = ({ release }) => {
                             </div>
 
                             <div className={styles.middleColumn}>
-                            <img className={styles.albumArt} src={Release.coverURL} alt={Release.name} />
+                                <img className={styles.albumArt} src={Release.coverURL} alt={Release.name} />
+                                
+                                {Follows && <p>Supported by</p>}
+                                <div className={styles.followerContainer}>
+                                    {Follows && Follows.map(f => 
+                                    (<div>
+                                        <img className={styles.followerIMG} src={f.User.pictureURL} alt={f.User.username} title={f.User.username} />
+                                    </div>)
 
+                                    )}
+                                </div>
                             </div>
 
                         </div>
 
                         <div className={styles.rightColumn}>
-                            <ArtistSideBar artist={Artist} />
+                            <ArtistSideBar artist={Artist} userId={user.id} />
                             <Discography artist={Artist} />
                         </div>
 

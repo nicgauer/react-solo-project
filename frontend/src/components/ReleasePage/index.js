@@ -14,7 +14,7 @@ const ReleasePage = () => {
     useEffect(() => {
         (async () => {
                 const response = await releaseActions.getRelease(url, release);
-                console.log(response);
+                // console.log(response);
                 if(response) setRelease(response.artist);
                 setLoaded(true);
         })();

@@ -4,18 +4,14 @@ import { useState, useEffect } from 'react';
 import styles from './FollowButton.module.css';
 
 
-const FollowButton = ({ userId, artistId }) => {
+const FollowButton = ({ userId, artistId, CUF }) => {
     const [followString, setFollowString] = useState('Follow')
 
     useEffect(() => {
-        (async () => {
-            const follow = await findFollow(userId, artistId);
-            console.log(follow);
-            if(follow){
-                setFollowString('Unfollow');
-            }
-        })();
-    })
+        if(CUF){
+            setFollowString('Unfollow');
+        }
+    }, [])
 
     const clickHandler = async () => {
         if(followString === 'Follow'){

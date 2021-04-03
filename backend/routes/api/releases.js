@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const asyncHandler = require('express-async-handler');
-const { Release, Artist, Song } = require('../../db/models')
+const { Release, Artist, Song, Follow, User } = require('../../db/models')
 const { check } = require('express-validator');
 const { requireAuth, checkIfCurrentUser } = require('../../utils/auth.js');
 const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3.js');
@@ -59,6 +59,13 @@ router.get('/:artistUrl/:releaseUrl', asyncHandler( async (req, res) => {
             },
             include: [{
                 model: Song
+            }]
+        },
+        { 
+            model: Follow,
+            include: [{
+                model: User,
+                attributes: ['username', 'pictureURL']
             }]
         }]
     })
