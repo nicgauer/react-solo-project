@@ -5,6 +5,7 @@
 
 .bubbleContainer {
     display:flex;
+    flex-wrap: wrap;
 }
 
 .profileImage {
