@@ -16,3 +16,9 @@
 .userContainer {
     align-self: center;
 }
+
+.loggedOutPage {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}

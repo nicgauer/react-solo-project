@@ -39,6 +39,13 @@ const HomePage = () => {
                         </div>
                 </div>
             )}
+
+            {!user && (
+                <div className={styles.loggedOutPage}>
+                    <h1>Welcome to Soundcampify!</h1>
+                    <h5>Please log in or sign up</h5>
+                </div>
+            )}
         </div>
     )
 }

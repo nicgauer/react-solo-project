@@ -29,7 +29,7 @@ asyncHandler(async (req, res, next) => {
     // const artist = await Artist.findByPk(artistId);
     
     // if(checkIfCurrentUser(artist.userId, req)){
-        coverURL = await singlePublicFileUpload(req.file);
+        const coverURL = await singlePublicFileUpload(req.file);
         
         const release = await Release.create({
             artistId, coverURL, name, releaseURL, releaseDate, bio, credits

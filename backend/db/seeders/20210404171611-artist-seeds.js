@@ -65,7 +65,14 @@ const colorList = [
     '#108C86',
     '#2250BF',
     '#9222BF',
-    '#D3792E'
+    '#D3792E',
+    '#D9CB53',
+    '#9253D9',
+    '#632BA2',
+    '#392BA2',
+    '#0C0735',
+    '#FF00CD',
+    '#9FC4CA'
   ]
 
   
@@ -88,7 +95,7 @@ const generateArtistArray = (num) => {
         pageColor: randomColor(),
         textColor: randomColor(),
         bio: faker.lorem.paragraph(),
-        location: `${faker.address.cityName}, ${faker.address.stateName}`,
+        location: `${faker.address.city()}, ${faker.address.stateAbbr()}`,
         userId: randomNumber(30) + 1,
         createdAt: new Date(),
         updatedAt: new Date(),

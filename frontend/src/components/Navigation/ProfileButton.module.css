@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+}
+
+.profileButton {
+    background:transparent;
+    border:none;
+    cursor: pointer;
+    position:relative;
+}
+
+.profileIcon {
+    margin-top: 8px;
+    width: 35px;
+    height: 35px;
+}
+
+.profileDropdown{
+    background-color: rgba(160, 160, 208, 0.315);
+    border-radius: 9px;
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    z-index: -1;
+}
+
+.button {
+    background:transparent;
+    cursor: pointer;
+    border:none;
+}

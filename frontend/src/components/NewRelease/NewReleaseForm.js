@@ -59,10 +59,10 @@ const NewReleaseForm = () => {
         const newRelease = await releaseActions.newRelease({
             image, artistId, name, releaseDate, about, credits
         })
-        .catch(async (res) => {
-            const data = await res.json();
-            if(data && data.errors) setErrors(data.errors);
-        })
+        // .catch(async (res) => {
+        //     const data = await res.json();
+        //     if(data && data.errors) setErrors(data.errors);
+        // })
 
         if(newRelease) {
             const json = await newRelease.json();

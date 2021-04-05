@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom'
 import * as sessionActions from '../../store/session';
 import * as artistActions from '../../store/artists';
 
+import styles from './ProfileButton.module.css';
+
 import profileIcon from '../icons/icons8-user-26.png'
 
 const ProfileButton = ({ user }) => {
@@ -43,37 +45,39 @@ const ProfileButton = ({ user }) => {
     }, [user])
 
     return(
-        <>
-            <button onClick={openMenu} className="nav__profile-button">
-                <img className='nav__icon' src={profileIcon} title='Profile' alt='profile' />
+        <div className={styles.container}>
+            <button onClick={openMenu} className={styles.profileButton}>
+                <img className={styles.profileIcon} src={profileIcon} title='Profile' alt='profile' />
             </button>
             {showMenu && (
-                <ul className='profile-dropdown'>
-                    <li>{user.username}</li>
-                    <li>{user.email}</li>
-                    {artists && 
-                    artists.map(artist => <li key={artist.id}>
-                        <NavLink to={`/${artist.customURL}`}>{artist.name}</NavLink>
-                    </li>)}
-                    <li>
-                        <NavLink to='/new-artist'>
-                            <button>Create New Artist</button>
-                        </NavLink>
-                    </li>
+                <div className={styles.profileDropdownWindow}>
+                    <ul className={styles.profileDropdown}>
+                        <li>{user.username}</li>
+                        <li>{user.email}</li>
+                        {artists && 
+                        artists.map(artist => <li key={artist.id}>
+                            <NavLink to={`/${artist.customURL}`}>{artist.name}</NavLink>
+                        </li>)}
+                        <li>
+                            <NavLink to='/new-artist'>
+                                <button className={styles.button}>Create New Artist</button>
+                            </NavLink>
+                        </li>
 
-                    <li>
-                        <NavLink to='/new-release'>
-                            <button>Create New Release</button>
-                        </NavLink>
-                    </li>
+                        <li>
+                            <NavLink to='/new-release'>
+                                <button className={styles.button}>Create New Release</button>
+                            </NavLink>
+                        </li>
 
-                    <li>
-                        <button onClick={logout} className='profile-dropdown__logout-button'>Log out</button>
-                    </li>
+                        <li>
+                            <button className={styles.button} onClick={logout}>Log out</button>
+                        </li>
 
-                </ul>
+                    </ul>
+                </div>
             )}
-        </>
+        </div>
 
     )
 }

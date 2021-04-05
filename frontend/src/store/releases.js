@@ -14,7 +14,7 @@ export const newRelease = async (release) => {
     const newurl = name.replace(/\s+/g, '-').toLowerCase();
     formData.append('releaseURL', newurl)
 
-        const response = await csrfFetch('/api/new-release', {
+        const response = await csrfFetch('/api/releases/new-release', {
             method: 'POST',
             headers: {
                 "Content-Type": "multipart/form-data",
